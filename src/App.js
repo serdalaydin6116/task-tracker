@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import './App.css';
-
+import { useState } from "react";
+import "./App.css";
+import AddTask from "./components/AddTask";
 import Header from "./components/Header";
-import Tasks from './components/Tasks';
+import Tasks from "./components/Tasks";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -25,14 +25,40 @@ function App() {
       isDone: false,
     },
   ]);
+
+  // DELETE TASK
+  const deleteTask = (deletedTaskId) => {
+    // console.log("delete Task", deletedTaskId);
+    setTasks(tasks.filter((task) => task.id !== deletedTaskId));
+  };
+
+  //ADD TASK
+  const addTask = (newTask)=>{
+    const id = Math.floor(Math.random() *100 +1);
+    const addNewTask ={id, ...newTask}
+    setTasks([...tasks, addNewTask])
+  };
+
+  //tooggle DONE oldugunda, üzerine tıklandığında
+
+  const toggleDone = (toggleDoneId)=>{
+    // console.log("doubleclıck", toggleDoneId);
+    setTasks(
+      tasks.map ((task)=> 
+      task.id ===toggleDoneId ? {...task, isDone : !task.isDone : task})
+    )
+  }
+
+  
+
   return (
-    <div className="App">
-      <Header  title="Task Tracker"/>
-      <Tasks  tasks ={tasks}/>
-      <Duty
-     
+    <div className="container">
+      <Header title="TASK TRACKER" />
+      <AddTask addTask = {addTask}/>
+      <Tasks tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
 
 export default App;
+
