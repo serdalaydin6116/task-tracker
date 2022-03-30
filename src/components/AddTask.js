@@ -2,19 +2,22 @@
 
 import { useState } from "react";
 
-const AddTask = ({addTask}) => {
+const AddTask = ({ addTask }) => {
   const [text, setText] = useState("");
   const [day, setDay] = useState("");
 
-  const onSubmit = (e)=>{
+  const onSubmit = (e) => {
     e.preventDefault();
-    addTask({text, day, isDone: false})
+    addTask({ text, day, isDone: false });
     setText("");
     setDay("");
+
+    // console.log(text);
+    // console.log(day);
   };
 
   return (
-    <form className="add-form" onSubmit ={onSubmit}>
+    <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
         <label htmlFor="task">Task</label>
         <input
@@ -24,7 +27,7 @@ const AddTask = ({addTask}) => {
           placeholder="AddTask"
           required
           onChange={(e) => setText(e.target.value)}
-          value = {text}
+          value={text}
         />
       </div>
       <div className="form-control">
@@ -36,7 +39,7 @@ const AddTask = ({addTask}) => {
           placeholder="Add Day & Time"
           required
           onChange={(e) => setDay(e.target.value)}
-          value = {day}
+          value={day}
         />
       </div>
       <input type="submit" value="Save Task" className="btn btn-block" />

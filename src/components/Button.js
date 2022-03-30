@@ -1,6 +1,6 @@
 
 
-const Button = ({ color, text, handleClick }) => {
+const Button = ({ color, text, toggleShow }) => {
   // const handleClick = () => {
   //   console.log("Click with handle");
   // };
@@ -9,7 +9,7 @@ const Button = ({ color, text, handleClick }) => {
       <button
         className="btn"
         style={{ backgroundColor: color }}
-        onClick={handleClick}
+        onClick={toggleShow}
       >
         {text}
       </button>
